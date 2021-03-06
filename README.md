@@ -16,7 +16,11 @@ require('laravel-mix-obfuscator');
 mix
     .js('resources/js/app.js', 'public/js')
     .less('resources/less/app.less', 'public/css')
-    .obfuscator();
+    .obfuscator({
+		exclude: [
+			path.resolve(__dirname, 'node_modules')
+		]
+	});
 ```
 
 # Config
@@ -24,27 +28,25 @@ mix
 ```javascript
 
 mix.obfuscator({
-    options: {
-        rotateStringArray: true,
-    },
-    exclude: [
-        'node_modules'
-    ]
+    options: {},
+    exclude: []
 })
 
 ```
 
 ### options
-Type: `object` Default: `{ rotateStringArray: true }`
+Type: `object` Default: `{}`
 
 Javascript Obfuscator options.
 
 [More information about the Javascript Obfuscator options](https://github.com/javascript-obfuscator/javascript-obfuscator#options)
 
 ### exclude
-Type: `string[]` Default: `[ 'node_modules' ]`
+Type: `string[]` Default: `[]`
 
 A file names or globs which indicates files to exclude from obfuscation.
 
-`node_modules` path is excluded by default. It is not recommended to obfuscate vendor scripts and polyfills, since the obfuscated code is 15-80% slower (depends on options) and the files are significantly larger.
+It is not recommended to obfuscate vendor scripts and polyfills, since the obfuscated code is 15-80% slower (depends on options) and the files are significantly larger. 
+
+**It is strongly recommended to exclude `node_modules`.**
 
