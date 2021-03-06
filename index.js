@@ -2,16 +2,15 @@ let mix = require('laravel-mix');
 let WebpackObfuscator = require('webpack-obfuscator');
 
 class Obfuscator {
-	/**
+    /**
      * Options for Javascript Obfuscator.
-     * Defaults to the rotateStringArray, true.
      *
 	 * @ref https://github.com/javascript-obfuscator/javascript-obfuscator#options
      * @return {String|Array}
      */
 	options = {}
 
-	/**
+    /**
      * A file names or globs which indicates files to exclude from obfuscation.
      *
      * @return {String|Array}
@@ -43,9 +42,6 @@ class Obfuscator {
      * When your component is called, all user parameters
      * will be passed to this method.
      *
-     * Ex: register(src, output) {}
-     * Ex: mix.yourPlugin('src/path', 'output/path');
-     *
      * @param  {object} config
      * @return {void}
      *
@@ -73,20 +69,7 @@ class Obfuscator {
 			}
 		}
     }
-		
-	/**
-     * Build options.
-     *
-	 * @param  {object} options
-     * @return {object}
-     */
-	buildOptions(options){
-		if(typeof options.rotateStringArray !== 'boolean'){
-			options.rotateStringArray = this.options.rotateStringArray;
-		}
 
-		return options;
-	}
 }
 
 mix.extend('obfuscator', new Obfuscator());
