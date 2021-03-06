@@ -19,7 +19,7 @@
     "author": "imannms",
     "license": "MIT",
     "bugs": {
-      "url": "https://github.com/jeffreyway/laravel-mix-obfuscator/issues"
+      "url": "https://github.com/imannms/laravel-mix-obfuscator/issues"
     },
-    "homepage": "https://github.com/jeffreyway/laravel-mix-obfuscator#readme"
+    "homepage": "https://github.com/imannms/laravel-mix-obfuscator#readme"
   }
