@@ -1,24 +1,5 @@
 let mix = require('laravel-mix');
 let WebpackObfuscator = require('webpack-obfuscator');
-let path = require('path');
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for the application as well as bundling up all the JS files.
- |
- */
-
-/* mix.webpackConfig({
-    plugins: [
-        new JavaScriptObfuscator ({
-            rotateUnicodeArray: true
-        },  ['public/js/app.js'])
-    ],
-}); */
 
 class Obfuscator {
 	/**
@@ -28,19 +9,14 @@ class Obfuscator {
 	 * @ref https://github.com/javascript-obfuscator/javascript-obfuscator#options
      * @return {String|Array}
      */
-	options = {
-		rotateStringArray: true,
-	}
+	options = {}
 
 	/**
      * A file names or globs which indicates files to exclude from obfuscation.
-     * Defaults to 'node_modules'.
      *
      * @return {String|Array}
      */
-	exclude = [
-		'node_modules'
-	]
+	exclude = []
 
     /**
      * The optional name to be used when called by Mix.
@@ -50,9 +26,6 @@ class Obfuscator {
      */
     name() {
 		return 'obfuscator';
-        // Example:
-        // return 'example';
-        // return ['example', 'alias'];
     }
 
     /**
@@ -62,8 +35,6 @@ class Obfuscator {
      */
     dependencies() {
 		return ['javascript-obfuscator', 'webpack-obfuscator'];
-        // Example:
-        // return ['typeScript', 'ts'];
     }
 
     /**
@@ -80,31 +51,10 @@ class Obfuscator {
      *
      */
     register(config) {
-		var config = config || {};
-        // Example:
-		// this.config = { proxy: arg };
-		this.options = typeof config.options === 'object' ? this.buildOptions( config.options ) : this.options;
-		this.exclude = typeof config.exclude === 'array' ? this.buildExcludeList( config.exclude ) : this.buildExcludeList( this.exclude );
-    }
-
-    /**
-     * Boot the component. This method is triggered after the
-     * user's webpack.mix.js file has executed.
-     */
-    boot() {
-        // Example:
-        // if (Config.options.foo) {}
-    }
-
-    /**
-     * Append to the master Mix webpack entry object.
-     *
-     * @param  {Entry} entry
-     * @return {void}
-     */
-    webpackEntry(entry) {
-        // Example:
-        // entry.add('foo', 'bar');
+        let Config = config || {};
+     
+        this.options = Config.options || this.options;
+        this.exclude = Config.exclude || this.exclude;
     }
 
     /**
@@ -112,73 +62,18 @@ class Obfuscator {
      *
      * @return {Array|Object}
      */
-    webpackRules() {
-        // Example:
-        // return {
-        //     test: /\.less$/,
-        //     loaders: ['...']
-		// });
-		
+    webpackRules() {		
 		return {
 			test: /\.js$/,
 			exclude: this.exclude,
-/* 			exclude: [ 
-				path.resolve(__dirname, 'node_modules'),
-				path.resolve(__dirname, 'resources/js/vendor/fictionalebooks/library/jquery-plugin/*.js') 
-			],
- */			enforce: 'post',
+    		enforce: 'post',
 			use: { 
 				loader: WebpackObfuscator.loader, 
 				options: this.options
 			}
 		}
     }
-
-    /*
-     * Plugins to be merged with the master webpack config.
-     *
-     * @return {Array|Object}
-     */
-    webpackPlugins() {
-        // Example:
-        // return new webpack.ProvidePlugin(this.aliases);
-    }
-
-    /**
-     * Override the generated webpack configuration.
-     *
-     * @param  {Object} webpackConfig
-     * @return {void}
-     */
-    webpackConfig(webpackConfig) {
-        // Example:
-        // webpackConfig.resolve.extensions.push('.ts', '.tsx');
-    }
-
-    /**
-     * Babel config to be merged with Mix's defaults.
-     *
-     * @return {Object}
-     */
-    babelConfig() {
-        // Example:
-        // return { presets: ['@babel/preset-react'] };
-	}
-	
-	/**
-     * Build exclude list.
-     *
-	 * @param  {string[]} list
-     * @return {string[]}
-     */
-	buildExcludeList(list){
-		let pathResolved = [];
-		list.forEach(filename => {
-			pathResolved.push( this.resolvePath(filename) );
-		});
-		return pathResolved;
-	}
-	
+		
 	/**
      * Build options.
      *
@@ -191,16 +86,6 @@ class Obfuscator {
 		}
 
 		return options;
-	}
-	
-	/**
-     * Resolve path.
-     *
-	 * @param  {string} filename
-     * @return {string}
-     */
-	resolvePath(filename){
-		return path.resolve(__dirname, filename);
 	}
 }
 
