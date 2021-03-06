@@ -5,17 +5,17 @@ class Obfuscator {
     /**
      * Options for Javascript Obfuscator.
      *
-	 * @ref https://github.com/javascript-obfuscator/javascript-obfuscator#options
+     * @ref https://github.com/javascript-obfuscator/javascript-obfuscator#options
      * @return {String|Array}
      */
-	options = {}
+    options = {}
 
     /**
      * A file names or globs which indicates files to exclude from obfuscation.
      *
      * @return {String|Array}
      */
-	exclude = []
+    exclude = []
 
     /**
      * The optional name to be used when called by Mix.
@@ -24,7 +24,7 @@ class Obfuscator {
      * @return {String|Array}
      */
     name() {
-		return 'obfuscator';
+        return 'obfuscator';
     }
 
     /**
@@ -33,7 +33,7 @@ class Obfuscator {
      * @return {Array}
      */
     dependencies() {
-		return ['javascript-obfuscator', 'webpack-obfuscator'];
+        return ['javascript-obfuscator', 'webpack-obfuscator'];
     }
 
     /**
@@ -58,16 +58,16 @@ class Obfuscator {
      *
      * @return {Array|Object}
      */
-    webpackRules() {		
-		return {
-			test: /\.js$/,
-			exclude: this.exclude,
-    		enforce: 'post',
-			use: { 
-				loader: WebpackObfuscator.loader, 
-				options: this.options
-			}
-		}
+    webpackRules() {    
+        return {
+            test: /\.js$/,
+            exclude: this.exclude,
+            enforce: 'post',
+            use: { 
+                loader: WebpackObfuscator.loader, 
+                options: this.options
+            }
+        }
     }
 
 }
