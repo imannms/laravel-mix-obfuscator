@@ -17,10 +17,10 @@ mix
     .js('resources/js/app.js', 'public/js')
     .less('resources/less/app.less', 'public/css')
     .obfuscator({
-		exclude: [
-			path.resolve(__dirname, 'node_modules')
-		]
-	});
+	exclude: [
+	   path.resolve(__dirname, 'node_modules')
+	]
+     });
 ```
 
 # Config
