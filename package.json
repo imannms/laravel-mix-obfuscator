@@ -1,6 +1,6 @@
 {
     "name": "laravel-mix-obfuscator",
-    "version": "0.0.1",
+    "version": "0.0.1-aplha",
     "description": "A quick Laravel Mix extension for Webpack Obfuscator (Javascript Obfuscator) support.",
     "main": "index.js",
     "scripts": {
