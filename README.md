@@ -1,2 +1,50 @@
-# mix-obfuscator
-Laravel-Mix plugin for Webpack Obfuscator (Javascript Obfuscator)
+# Laravel Mix Obfuscator
+This extension provides instant Webpack Obfuscator (Javascript Obfuscator) support to your Mix (v2.1 and up) builds.
+
+# Usage
+First, install the extension.
+
+```npm install laravel-mix-obfuscator --save-dev```
+
+Then, require it within your `webpack.mix.js` file, like so:
+
+```javascript
+let mix = require('laravel-mix');
+
+require('laravel-mix-obfuscator');
+
+mix
+    .js('resources/js/app.js', 'public/js')
+    .less('resources/less/app.less', 'public/css')
+    .obfuscator();
+```
+
+# Config
+
+```javascript
+
+mix.obfuscator({
+    options: {
+        rotateStringArray: true,
+    },
+    exclude: [
+        'node_modules'
+    ]
+})
+
+```
+
+### options
+Type: `object` Default: `{ rotateStringArray: true }`
+
+Javascript Obfuscator options.
+
+[More information about the Javascript Obfuscator options](https://github.com/javascript-obfuscator/javascript-obfuscator#options)
+
+### exclude
+Type: `string[]` Default: `[ 'node_modules' ]`
+
+A file names or globs which indicates files to exclude from obfuscation.
+
+`node_modules` path is excluded by default. It is not recommended to obfuscate vendor scripts and polyfills, since the obfuscated code is 15-80% slower (depends on options) and the files are significantly larger.
+

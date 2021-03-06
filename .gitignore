@@ -1,0 +1,8 @@
+node_modules/
+notes.md
+coverage
+.nyc_output
+.idea/
+*.log
+package-lock.json
+yarn.lock
