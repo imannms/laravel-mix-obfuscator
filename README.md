@@ -1,5 +1,5 @@
 # Laravel Mix Obfuscator
-This extension provides instant Webpack Obfuscator (Javascript Obfuscator) support to your Mix (v2.1 and up) builds.
+This extension provides instant [Webpack Obfuscator](https://github.com/javascript-obfuscator/webpack-obfuscator) ([Javascript Obfuscator](https://github.com/javascript-obfuscator/javascript-obfuscator)) support to your Mix (v2.1 and up) builds.
 
 # Usage
 First, install the extension.
