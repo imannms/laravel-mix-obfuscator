@@ -1,5 +1,6 @@
 let mix = require('laravel-mix');
 let WebpackObfuscator = require('webpack-obfuscator');
+let path = require('path');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
